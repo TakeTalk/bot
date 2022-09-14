@@ -21,31 +21,6 @@ def bot():
             quote = 'I could not retrieve a quote at this time, sorry.'
         msg.body(quote)
         responded = True
-    if ':hritik' in incoming_msg:
-        msg.body('😏 ohoo.. you are the guy')
-        msg.body('If you want to know about famouse quotes then enter quote ')
-        msg.body('ans If you want to know about cates then enter cat')
-        responded = True  
-    if ':sayan' in incoming_msg:
-        msg.body(f'welcome {incoming_msg}!!  mother fucker')
-        msg.body('If you want to know about famouse quotes then enter quote ')
-        msg.body('ans If you want to know about cates then enter cat')
-        responded = True  
-    if ':krishnendu' in incoming_msg:
-        msg.body(f'welcome {incoming_msg}!!  bokka choda')
-        msg.body('If you want to know about famouse quotes then enter quote ')
-        msg.body('ans If you want to know about cates then enter cat')
-        responded = True  
-    if ':anik' in incoming_msg:
-        msg.body(f'welcome {incoming_msg}!!  mother fucker')
-        msg.body('If you want to know about famouse quotes then enter quote ')
-        msg.body('ans If you want to know about cates then enter cat')
-        responded = True       
-    if ':arka' in incoming_msg:
-        msg.body(f'welcome {incoming_msg}!!  mother fucker')
-        msg.body('If you want to know about famouse quotes then enter quote ')
-        msg.body('ans If you want to know about cates then enter cat')
-        responded = True  
     elif 'cat' in incoming_msg:
         # return a cat pic
         msg.media('https://cataas.com/cat')
