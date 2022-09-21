@@ -30,21 +30,20 @@ def bot():
     msg = resp.message()
     responded = False
     li = list(incoming_msg.split(" "))                          # making the list of incoming massage like "i am sanmay" to ["i","am","sanmay"]
-    if 'hi' in incoming_msg:
-        msg.body('hello')
+    if 'hi' in li:
+        msg.body('Welcome,I am Pain, and let me know what you are looking for, and where you are looking for it')
         responded = True
     elif check(li,preps):
         prep = check(li,preps)                                  # in there prep is preps's content which is present in incoming massage's list called li
         last = Convert(li,prep)                                 # in there last is the final place
         if(last == "0"):
             msg.body('sorry! can u write the location')
-        for i in range(1,5):
-            msg.body(last[0])
+        for i in range(1,6):
             msg.body(nearby(last[0],last[1],i))
-            if (i!=4):
+            if (i!=5):
                 msg.body(",")  
         responded = True
-    if not responded and (app.status ==500):
+    if not responded :
         msg.body('Sorry!! i can not understand, please modify and retype this last massage')
     return str(resp)
 if __name__ == '__main__':

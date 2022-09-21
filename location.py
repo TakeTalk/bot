@@ -21,7 +21,7 @@ def nearby(find,adr,i) :
 
     payload={}
     headers = {}
-    
+   
     
     response = requests.request("GET", url, headers=headers, data=payload)
     json_response = response.json() 
