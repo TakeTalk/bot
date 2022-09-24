@@ -18,7 +18,6 @@ def check(li,preps):                                        # function for check
 def Convert(li,p):                                          # function for serching the main place name
     length = len(li) 
     if(length < 3):return 0
-    # return 1
     indexx = li.index(p)
     if(indexx == (length-1) or indexx == 0):
         return "0"
