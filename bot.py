@@ -5,7 +5,7 @@ from location import *
 
 app = Flask(__name__)
 preps = ["in","at","from","on","near", "of","for"]
-# arti = ["a","an","the"]
+arti = ["a","an","the"]
 
 def check(li,preps):                                        # function for checking if any of preps's content present in incoming massage list and return it
     length1 = len(preps)
@@ -16,11 +16,15 @@ def check(li,preps):                                        # function for check
                 return preps[i]
     return 0
 def Convert(li,p):                                          # function for serching the main place name
-    length = len(li)
+    length = len(li) 
+    if(length < 3):return 0
+    # return 1
     indexx = li.index(p)
-    if(indexx == (length-1)):
-        return "0";
-    words=[li[indexx-1],li[indexx+1]]
+    if(indexx == (length-1) or indexx == 0):
+        return "0"
+    final = li[indexx+1]
+    if(li[indexx+1] in arti): final = li[indexx+2]
+    words=[li[indexx-1],final]
     return words
 
 @app.route('/bot', methods=['POST'])
@@ -36,12 +40,14 @@ def bot():
     elif check(li,preps):
         prep = check(li,preps)                                  # in there prep is preps's content which is present in incoming massage's list called li
         last = Convert(li,prep)                                 # in there last is the final place
-        if(last == "0"):
-            msg.body('sorry! can u write the location')
-        for i in range(1,6):
-            msg.body(nearby(last[0],last[1],i))
-            if (i!=5):
-                msg.body(",")  
+        # msg.body(f'{last}')
+        if(last==0):
+            msg.body('sorry! can u write the correct sentence')
+        else:
+            for i in range(1,6):
+                msg.body(nearby(last[0],last[1],i))
+                if (i!=5):
+                    msg.body(",")
         responded = True
     if not responded :
         msg.body('Sorry!! i can not understand, please modify and retype this last massage')
@@ -49,5 +55,4 @@ def bot():
 if __name__ == '__main__':
     app.run(port=4000)
     
-   
-   
+
