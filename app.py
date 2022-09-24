@@ -34,7 +34,7 @@ def bot():
     responded = False
     li = list(incoming_msg.split(" "))                          # making the list of incoming massage like "i am sanmay" to ["i","am","sanmay"]
     if 'hi' in li:
-        msg.body('Welcome,I am Pain, and let me know what you are looking for, and where you are looking for it')
+        msg.body('Welcome,I am your bot 😊...let me know what you are looking for, and where you are looking for it')
         responded = True
     elif check(li,preps):
         prep = check(li,preps)                                  # in there prep is preps's content which is present in incoming massage's list called li
