@@ -49,8 +49,8 @@ def bot():
         else:
             for i in range(1,6):
                 msg.body(nearby(last[0],last[1],i))
-                if (i!=5):
-                    msg.body("Sorry ! Can you rewrite the sentence ")
+                # if (i!=5):
+                #     msg.body("Sorry ! Can you rewrite the sentence ")
         responded = True
     if not responded :
         msg.body('Sorry!! I can not understand your words 😔!!')
