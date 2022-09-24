@@ -38,19 +38,19 @@ def bot():
     responded = False
     li = list(incoming_msg.split(" "))                          # making the list of incoming massage like "i am sanmay" to ["i","am","sanmay"]
     if 'hi' in li or 'hello' in li or 'hlw' in li:
-        msg.body('Welcome,I am your guide 😊, and let me know what you are looking for, and where you are looking for it')
+        msg.body('Welcome 🤝,I am your guide 😊, and let me know what you are looking for ❤️')
         responded = True
     elif check(li,preps):
         prep = check(li,preps)                                  # in there prep is preps's content which is present in incoming massage's list called li
         last = Convert(li,prep)                                 # in there last is the final place
         # msg.body(f'{last}')
         if(last==0):
-            msg.body('sorr')
+            msg.body('sorry !! can you rewrite the sentence 😒')
         else:
             for i in range(1,6):
                 msg.body(nearby(last[0],last[1],i))
-                # if (i!=5):
-                #     msg.body("Sorry ! Can you rewrite the sentence ")
+                if (i!=5):
+                    msg.body(",")
         responded = True
     if not responded :
         msg.body('Sorry!! I can not understand your words 😔!!')
