@@ -4,8 +4,8 @@ from twilio.twiml.messaging_response import MessagingResponse
 from location import *
 
 app = Flask(__name__)
-preps = ["in","at","from","on","near", "of","for"]
-arti = ["a","an","the"]
+preps = ["in","at","from","on","near", "of","for","names"]
+arti = ["a","an","the","in"]
 
 def check(li,preps):                                        # function for checking if any of preps's content present in incoming massage list and return it
     length1 = len(preps)
@@ -19,8 +19,8 @@ def Convert(li,p):                                          # function for serch
     length = len(li) 
     if(length < 3):return 0
     indexx = li.index(p)
-    if(indexx == (length-1) or indexx == 0):
-        return "0"
+    if(indexx == length or indexx == 1):
+        return 0
     final = li[indexx+1]
     if(li[indexx+1] in arti): final = li[indexx+2]
     words=[li[indexx-1],final]
@@ -33,7 +33,7 @@ def bot():
     msg = resp.message()
     responded = False
     li = list(incoming_msg.split(" "))                          # making the list of incoming massage like "i am sanmay" to ["i","am","sanmay"]
-    if 'hi' in li:
+    if 'hi' in li or 'hello' in li or 'hlw' in li:
         msg.body('Welcome,I am Pain, and let me know what you are looking for, and where you are looking for it')
         responded = True
     elif check(li,preps):
