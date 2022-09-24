@@ -1,7 +1,7 @@
 from flask import Flask, request
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
-from location import *
+from test import *
 from spell import *
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def Convert(li,p):                                          # function for serch
         if(indexx+2 == length):
             return 0
         final = li[indexx+2]
-    res=[correct(li[indexx-1]),correct(final)]
+    res=[correct(li[indexx-1]),final]
     return res
 
 @app.route('/bot', methods=['POST'])
@@ -38,7 +38,7 @@ def bot():
     responded = False
     li = list(incoming_msg.split(" "))                          # making the list of incoming massage like "i am sanmay" to ["i","am","sanmay"]
     if 'hi' in li or 'hello' in li or 'hlw' in li:
-        msg.body('Welcome 🤝,I am your guide 😊, and let me know what you are looking for ❤️')
+        msg.body('Welcome 🤝,I am your guide 😊, and let me know what you are looking for')
         responded = True
     elif check(li,preps):
         prep = check(li,preps)                                  # in there prep is preps's content which is present in incoming massage's list called li
@@ -47,13 +47,14 @@ def bot():
         if(last==0):
             msg.body('sorry !! can you rewrite the sentence 😒')
         else:
-            for i in range(1,6):
-                msg.body(nearby(last[0],last[1],i))
-                if (i!=5):
-                    msg.body(",")
+            msg.body('👉')
+            for i in range(0,5):
+                msg.body(nearby(last[0],last[1],i)[1]+'\n'+'\n'+'location'+'\n'+'\n'+nearby(last[0],last[1],i)[0]+'\n'+'\n'+'👉')
+                if(i!=5):
+                    msg.body('\n')
         responded = True
     if not responded :
-        msg.body('Sorry!! I can not understand your words 😔!!')
+        msg.body('Sorry!! I can not understand \n your words  😔!!')
     return str(resp)
 if __name__ == '__main__':
     app.run(port=4000)

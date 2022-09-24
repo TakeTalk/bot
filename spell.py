@@ -8,3 +8,4 @@ def correct(word):
     result = word.correct()
     
     return result
+
