@@ -1,4 +1,4 @@
-# <h1 align="center">Chat Bot with Python </h1>
+# <h1 align="center">Chat Bot with Python 🤖</h1>
 <h2> Tools & Resources ⚒️ </h2>
 <p>
   <ul>
