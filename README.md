@@ -22,8 +22,9 @@
   <div>
     <img src="https://github.com/TakeTalk/bot/blob/master/Screenshots/1.jpg?raw=true" alt="Screenshot 1" width="200" height="370" align="left"></img>
     <img src="https://github.com/TakeTalk/bot/blob/master/Screenshots/2.jpg?raw=true" alt="Screenshot 2" width="200" height="370" align="center"></img>
-    <img src="https://github.com/TakeTalk/bot/blob/master/Screenshots/3.jpg?raw=true" alt="Screenshot 2" width="200" height="370" align="center"></img>
-    <img src="https://github.com/TakeTalk/bot/blob/master/Screenshots/4.jpg?raw=true" alt="Screenshot 2" width="200" height="370" align="right"></img>
+    <br/><br/>
+    <img src="https://github.com/TakeTalk/bot/blob/master/Screenshots/3.jpg?raw=true" alt="Screenshot 2" width="200" height="370" align="left"></img>
+    <img src="https://github.com/TakeTalk/bot/blob/master/Screenshots/4.jpg?raw=true" alt="Screenshot 2" width="200" height="370" align="center"></img>
   </div>
   
   <div>
