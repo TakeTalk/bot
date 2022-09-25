@@ -47,10 +47,10 @@ def bot():
         if(last==0):
             msg.body('sorry !! can you rewrite the sentence 😒')
         else:
-            result=fetch(last[0],last[1])
+            result=fetch(last[0],last[1])                       #fetch is from location.py ,it returns multi dimensional array of locations
             msg.body(f"Best {last[0]}s in {last[1]} are :\n \n \n")
             msg.body('👉')
-            for i in range (0,len(result)):
+            for i in range (0,len(result)):                   #accessing elements
                 msg.body(result[i][0][0]+'\n'+'\n'+'📌'+'landmark'+'--'+'\n'+result[i][0][1]+'\n'+'\n'+'🌏'+'location'+'--'+'\n'+result[i][0][2]+'\n'+'\n'+'\n'+'👉')
             responded = True
     if not responded :

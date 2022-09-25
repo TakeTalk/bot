@@ -10,5 +10,6 @@
     <li>Google Map place API </li>
     <li> Python Textblob library </li>
    </ul>
-  </p>
+</p>
+
 
