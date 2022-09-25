@@ -1,7 +1,7 @@
 from flask import Flask, request
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
-from test import *
+from location import *
 from spell import *
 
 app = Flask(__name__)
@@ -47,14 +47,17 @@ def bot():
         if(last==0):
             msg.body('sorry !! can you rewrite the sentence 😒')
         else:
+            result=fetch(last[0],last[1])
             msg.body('👉')
+            for i in range (0,len(result)):
+                msg.body(result[i][0][0]+'\n'+'\n'+'📌'+'landmark'+'--'+'\n'+result[i][0][1]+'\n'+'\n'+'🌏'+'location'+'--'+'\n'+result[i][0][2]+'\n'+'\n'+'\n'+'👉')
             
             # msg.body(nearby(last[0],last[1],i)[1]+'\n'+'\n'+'location'+'\n'+'\n'+nearby(last[0],last[1],i)[0]+'\n'+'\n'+'👉')
             # msg.body(last[0]+' '+last[1])
             
-            for i in range(0,4):
-                msg.body(nearby(last[0],last[1],i)[1]+'\n'+'\n'+'📌'+'landmark'+'\n'+'\n'+nearby(last[0],last[1],i)[2]+'\n'+'\n'+'🌏'+'location'+'\n'+'\n'+nearby(last[0],last[1],i)[0]+'\n'+'\n'+'👉')
-                responded = True
+            # for i in range(0,4):
+            #     msg.body(nearby(last[0],last[1],i)[1]+'\n'+'\n'+'📌'+'landmark'+'\n'+'\n'+nearby(last[0],last[1],i)[2]+'\n'+'\n'+'🌏'+'location'+'\n'+'\n'+nearby(last[0],last[1],i)[0]+'\n'+'\n'+'👉')
+            responded = True
     if not responded :
         msg.body('Sorry!! I can not understand \n your words  😔!!')
     return str(resp)

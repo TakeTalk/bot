@@ -1,3 +1,4 @@
+from unittest import result
 import requests
 # import json
 
@@ -15,24 +16,48 @@ def lat_solve(adr) :
     loc = [repository1,repository2]
     return loc
    
-def nearby(find,adr,i) :
+def nearby(find,adr) :
+    if find=='hotel':
+        find='lodging'
 
-    url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius=5000&type={find}&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
+    url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius=5000&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
 
     payload={}
     headers = {}
    
     
     response = requests.request("GET", url, headers=headers, data=payload)
-    json_response = response.json() 
-    repository = json_response["results"][i]["name"]
-
-    # response=response.json.loads()
-    return repository
-    # return (response.text)
+    json_response = response.json()
+    result= json_response["results"]
+    return result
 
 
-   
-# print(nearby("restaurant","kolkata",1))
+def createLink(lat,lng):
+    mapLink=f"https://www.google.com/maps/place/{lat}+{lng}"
+    return mapLink
+
+
+
+def fetch(find,adr):
+    total=nearby(find,adr)
+    name=[]
+    if(len(total)>=4):
+        for i in range(0,4):
+            loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
+            loc_link=createLink(loc[0],loc[1])
+            name.append([[total[i]["name"],total[i]["vicinity"],loc_link]])
+    else:
+        for i in range(0,len(total)):
+            loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
+            loc_link=createLink(loc[0],loc[1])
+            name.append([[total[i]["name"],total[i]["vicinity"],loc_link]])
+    
+    return name
+
+# print(len(fetch("restaurant","siuri")))
+    
+
+    
+# print(nearby("restaurant","siuri"))
 
 # https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=bar&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY
