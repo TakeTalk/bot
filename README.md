@@ -1,7 +1,4 @@
 # <h1> Chat Bot with Python </h1>
-<p>Made with ❤️ </p>
-<br/>
-<h2> Tools ~ </h2>
 
 <p>
   <ul>
