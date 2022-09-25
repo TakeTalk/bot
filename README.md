@@ -1,5 +1,5 @@
-# <h1> Chat Bot with Python </h1>
-<h2> Tools ~ </h2>
+# <h1>Chat Bot with Python </h1>
+<h2> Tools & Resources ~ </h2>
 <p>
   <ul>
     <li>Twilio Whatsapp Sandbox
@@ -8,5 +8,7 @@
     <li> Python Textblob library </li>
    </ul>
 </p>
+<br/>
+<h2>Diagram</h2>
 
 
