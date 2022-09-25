@@ -15,12 +15,12 @@ def lat_solve(adr) :
     
     loc = [repository1,repository2]
     return loc
-   
+  
 def nearby(find,adr) :
-    if find=='hotel':
+    if find=='hotels' or find=='hotel':
         find='lodging'
 
-    url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius=5000&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
+    url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius=20000&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
 
     payload={}
     headers = {}

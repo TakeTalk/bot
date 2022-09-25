@@ -27,7 +27,12 @@ def Convert(li,p):                                          # function for serch
         if(indexx+2 == length):
             return 0
         final = li[indexx+2]
-    res=[correct(li[indexx-1]),final]
+    preee = li[indexx-1]
+    templ = len(preee)
+    if(preee[templ-1]=='s'):
+        preee = preee[:-1]
+    # print(tempp)
+    res=[correct(preee),final]
     return res
 
 @app.route('/bot', methods=['POST'])
@@ -38,14 +43,14 @@ def bot():
     responded = False
     li = list(incoming_msg.split(" "))                          # making the list of incoming massage like "i am sanmay" to ["i","am","sanmay"]
     if 'hi' in li or 'hello' in li or 'hlw' in li:
-        msg.body('Welcome 🤝,I am your guide 😊, and let me know what you are looking for')
+        msg.body('Welcome 🤝, let me know what you are looking for')
         responded = True
     elif check(li,preps):
         prep = check(li,preps)                                  # in there prep is preps's content which is present in incoming massage's list called li
         last = Convert(li,prep)                                 # in there last is the final place
         # msg.body(f'{last}')
         if(last==0):
-            msg.body('sorry !! can you rewrite the sentence 😒')
+            msg.body('sorry !! can you rewrite the sentence')
         else:
             result=fetch(last[0],last[1])                       #fetch is from location.py ,it returns multi dimensional array of locations
             msg.body(f"Best {last[0]}s in {last[1]} are :\n \n \n")
@@ -54,9 +59,7 @@ def bot():
                 msg.body(result[i][0][0]+'\n'+'\n'+'📌'+'landmark'+'--'+'\n'+result[i][0][1]+'\n'+'\n'+'🌏'+'location'+'--'+'\n'+result[i][0][2]+'\n'+'\n'+'\n'+'👉')
             responded = True
     if not responded :
-        msg.body('Sorry!! I can not understand \n your words  😔!!')
+        msg.body('Sorry!! I can not understand \n your words !!')
     return str(resp)
 if __name__ == '__main__':
     app.run(port=4000)
-    
-
