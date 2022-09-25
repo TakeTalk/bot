@@ -1,3 +1,4 @@
+from unittest import result
 import requests
 # import json
 
@@ -20,6 +21,8 @@ def createLink(lat,lng):
     return mapLink
    
 def nearby(find,adr,i) :
+    if find=='hotel':
+        find='lodging'
 
     url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius=5000&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
 
@@ -35,13 +38,13 @@ def nearby(find,adr,i) :
         res_type= json_response["results"][i]["types"]
         if find in res_type:
             location = [json_response["results"][i]["geometry"]["location"]['lat'],json_response["results"][i]["geometry"]["location"]['lng']]
-            repository=[createLink(location[0],location[1]),json_response["results"][i]["name"]]
+            repository=[createLink(location[0],location[1]),json_response["results"][i]["name"],json_response["results"][i]["vicinity"]]
             flag=True
         if not flag:
-            repository=["--",f"Sorry there is no {find} in that given area"]
+            repository=["--","--","--"]
         return repository
     else:
-        repository=["--",f"Sorry there is no {find} in that given area"]
+        repository=["--","--","--"]
         return repository
 
     # response=response.json.loads()
@@ -51,6 +54,6 @@ def nearby(find,adr,i) :
     
 
     
-# print(nearby("lodging","chinsurah",1))
+# print(nearby("restaurant","siuri",4))
 
 # https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=bar&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY

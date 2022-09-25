@@ -29,10 +29,10 @@ def nearby(find,adr,i) :
 
     # response=response.json.loads()
     return repository
-    # print(response.text)
+    # return (response.text)
 
 
    
-# nearby("resturant","kolkata")
+# print(nearby("restaurant","kolkata",1))
 
 # https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=bar&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY
