@@ -41,21 +41,20 @@ def createLink(lat,lng):
 def fetch(find,adr):
     total=nearby(find,adr)
     name=[]
-    if(len(total)>=4):
-        for i in range(0,4):
-            loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
-            loc_link=createLink(loc[0],loc[1])
-            name.append([[total[i]["name"],total[i]["vicinity"],loc_link]])
-    else:
-        for i in range(0,len(total)):
-            loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
-            loc_link=createLink(loc[0],loc[1])
-            name.append([[total[i]["name"],total[i]["vicinity"],loc_link]])
+    n = 4
+    n = min(len(total),4)
+    for i in range(0,n):
+        loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
+        loc_link=createLink(loc[0],loc[1])
+        name.append([[total[i]["name"],total[i]["vicinity"],loc_link]])
     
     return name
 
-# print(len(fetch("restaurant","siuri")))
-    
+print(len(fetch("restaurant","siuri")))
+# re = fetch('restrurent',"subhasgram")
+# print(re[1][0][0])
+  
+   
 
     
 # print(nearby("restaurant","siuri"))
