@@ -49,7 +49,7 @@ def fetch(find,adr):
     
     return name
 
-print(len(fetch("restaurant","siuri")))
+# print(len(fetch("restaurant","siuri")))
 # re = fetch('restrurent',"subhasgram")
 # print(re[1][0][0])
   
