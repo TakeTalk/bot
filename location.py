@@ -41,7 +41,6 @@ def createLink(lat,lng):
 def fetch(find,adr):
     total=nearby(find,adr)
     name=[]
-    n = 4
     n = min(len(total),4)
     for i in range(0,n):
         loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
