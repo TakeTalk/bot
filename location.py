@@ -46,6 +46,7 @@ def fetch(find,adr):
     total=nearby(find,adr)
     print(len(total))
     name=[]
+
     for i in range(0,min(len(total),5)):
         loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
         loc_link=createLink(loc[0],loc[1])
@@ -54,7 +55,11 @@ def fetch(find,adr):
 
 
 # print(fetch("restaurant","kolkata"))
-    
+# re = fetch('restrurent',"subhasgram")
+# print(re[1][0][0])
+  
+   
+
 
     
 # print(nearby("restaurant","siuri"))
