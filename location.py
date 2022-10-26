@@ -3,7 +3,7 @@ import requests
 # import json
 
 def lat_solve(adr) :
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=API_KEY"
     payload={}
     headers = {}
 
@@ -27,10 +27,10 @@ def nearby(find,adr) :
         find='bank|finance'
     if find=='atm' or find=='atms':
         find='bank|finance|atm'
-    range=1000
+    range=5000
     result= []
     while len(result)<9:
-        url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius={range}&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
+        url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius={range}&types={find}&keyword=best&key=API_KEY"
 
         payload={}
         headers = {}
@@ -76,4 +76,4 @@ def fetch(find,adr):
     
 # print(nearby("restaurant","siuri"))
 
-# https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=lodging&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY
+# https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=lodging&key=API_KEY'
