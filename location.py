@@ -3,7 +3,7 @@ import requests
 # import json
 
 def lat_solve(adr) :
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=API_KEY"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
     payload={}
     headers = {}
 
@@ -19,16 +19,20 @@ def lat_solve(adr) :
 def nearby(find,adr) :
     if find=='hotels' or find=='hotel':
         find='lodging'
+    range=1000
+    result= []
+    while len(result)<7:
+        url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius={range}&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
 
-    url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius=20000&types={find}&keyword=best&key=API_KEY"
-
-    payload={}
-    headers = {}
-   
+        payload={}
+        headers = {}
     
-    response = requests.request("GET", url, headers=headers, data=payload)
-    json_response = response.json()
-    result= json_response["results"]
+        
+        response = requests.request("GET", url, headers=headers, data=payload)
+        json_response = response.json()
+        result= json_response["results"]
+        range=range+1000
+
     return result
 
 
@@ -40,22 +44,24 @@ def createLink(lat,lng):
 
 def fetch(find,adr):
     total=nearby(find,adr)
+    print(len(total))
     name=[]
-    n = min(len(total),4)
-    for i in range(0,n):
+
+    for i in range(0,min(len(total),5)):
         loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
         loc_link=createLink(loc[0],loc[1])
-        name.append([[total[i]["name"],total[i]["vicinity"],loc_link]])
-    
+        name.append([[total[i]["name"],total[i]["vicinity"],total[i]["rating"],loc_link]])
     return name
 
-# print(len(fetch("restaurant","siuri")))
+
+# print(fetch("restaurant","kolkata"))
 # re = fetch('restrurent',"subhasgram")
 # print(re[1][0][0])
   
    
 
+
     
 # print(nearby("restaurant","siuri"))
 
-# https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=bar&key=API_KEY
+# https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=lodging&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY

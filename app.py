@@ -3,7 +3,6 @@ import requests
 from twilio.twiml.messaging_response import MessagingResponse
 from location import *
 from spell import *
-
 app = Flask(__name__)
 preps = ["in","at","from","on","near", "of","for","names"]
 arti = ["a","an","the","in"]
@@ -56,10 +55,10 @@ def bot():
             msg.body(f"Best {last[0]}s in {last[1]} are :\n \n \n")
             msg.body('👉')
             for i in range (0,len(result)):                   #accessing elements
-                msg.body(result[i][0][0]+'\n'+'\n'+'📌'+'landmark'+'--'+'\n'+result[i][0][1]+'\n'+'\n'+'🌏'+'location'+'--'+'\n'+result[i][0][2]+'\n'+'\n'+'\n'+'👉')
+                msg.body(result[i][0][0]+'\n'+'\n'+'📌'+'landmark'+'--'+'\n'+result[i][0][1]+'\n'+'\n'+'🔖'+'rating'+'--'+'\n'+result[i][0][2]+'\n'+'\n'+'🌏'+'view in map'+'--'+'\n'+result[i][0][3]+'\n'+'\n'+'\n'+'👉')
             responded = True
     if not responded :
-        msg.body('Sorry!! I can not understand \n your words !!')
+        msg.body('Sorry!! I can not understand your words !!')
     return str(resp)
 if __name__ == '__main__':
     app.run(port=4000)
