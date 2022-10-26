@@ -19,9 +19,17 @@ def lat_solve(adr) :
 def nearby(find,adr) :
     if find=='hotels' or find=='hotel':
         find='lodging'
+    if find=='restaurants' or find=='restaurant':
+        find='food|restaurant'
+    if find=='hospitals' or find=='hospital':
+        find='doctor|hospital|medicine'
+    if find=='banks' or find=='bank':
+        find='bank|finance'
+    if find=='atm' or find=='atms':
+        find='bank|finance|atm'
     range=1000
     result= []
-    while len(result)<7:
+    while len(result)<9:
         url = f"https://maps.googleapis.com/maps/api/place/nearbysearch/json?location={lat_solve(adr)[0]},{lat_solve(adr)[1]}&radius={range}&types={find}&keyword=best&key=AIzaSyDFSNXLSQfHubvY3KZl9TiVXZR-R9uCXdY"
 
         payload={}
@@ -46,20 +54,24 @@ def fetch(find,adr):
     total=nearby(find,adr)
     print(len(total))
     name=[]
-
-    for i in range(0,min(len(total),5)):
-        loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
-        loc_link=createLink(loc[0],loc[1])
-        name.append([[total[i]["name"],total[i]["vicinity"],total[i]["rating"],loc_link]])
+    i=0
+    while (len(name)<5):
+        if (total[i]["business_status"]=="OPERATIONAL"):
+            loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
+            loc_link=createLink(loc[0],loc[1])
+            name.append([total[i]["name"],total[i]["vicinity"],total[i]["rating"],loc_link])
+            i+=1
+    for k in range(0,len(name)-1):
+        for j in range(k+1,len(name)):
+            if(name[k][2]<name[j][2]):
+                temp=name[k]
+                name[k]=name[j]
+                name[j]=temp
     return name
 
 
 # print(fetch("restaurant","kolkata"))
-# re = fetch('restrurent',"subhasgram")
-# print(re[1][0][0])
-  
-   
-
+    
 
     
 # print(nearby("restaurant","siuri"))

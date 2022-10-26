@@ -1,6 +1,5 @@
 from textblob import Word
 
-
 def correct(word):
     
     word = Word(word)
