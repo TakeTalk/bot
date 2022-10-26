@@ -54,7 +54,19 @@ def fetch(find,adr):
     total=nearby(find,adr)
     print(len(total))
     name=[]
-   
+    i=0
+    while (len(name)<5):
+        if (total[i]["business_status"]=="OPERATIONAL"):
+            loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
+            loc_link=createLink(loc[0],loc[1])
+            name.append([total[i]["name"],total[i]["vicinity"],total[i]["rating"],loc_link])
+            i+=1
+    for k in range(0,len(name)-1):
+        for j in range(k+1,len(name)):
+            if(name[k][2]<name[j][2]):
+                temp=name[k]
+                name[k]=name[j]
+                name[j]=temp
     return name
 
 
