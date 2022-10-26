@@ -49,7 +49,7 @@ def createLink(lat,lng):
     return mapLink
 
 
-
+#ARKA
 def fetch(find,adr):
     total=nearby(find,adr)
     print(len(total))
