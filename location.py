@@ -69,7 +69,7 @@ def fetch(find,adr):
             temp['link'] = loc_link
             name.append(temp)
             i+=1
-    result = sorted(name, key=itemgetter('rating'), reverse=True)
+    result = sorted(name, key=itemgetter('rating'), reverse=True)                       #sorting a list of dict by one value which is rating
     return result
 
 
