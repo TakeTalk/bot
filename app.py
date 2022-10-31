@@ -53,11 +53,11 @@ def bot():
         if(last==0):
             msg.body('sorry !! can you rewrite the sentence')
         else:
-            result=fetch(last[0],last[1])                       #fetch is from location.py ,it returns multi dimensional array of locations
             msg.body(f"Best {last[0]}s in {last[1]} are :"+'\n'+ '\n'+'-->')
             msg.body('\n'+'👉')
+            result=fetch(last[0],last[1])                       #fetch is from location.py ,it returns multi dimensional array of locations
             for i in range (0,len(result)):                   #accessing elements
-                msg.body(result[i][0]+'\n'+'\n'+'📌'+'landmark'+'-->'+'\n'+result[i][1]+'\n'+'\n'+'🔖'+'rating'+'-->'+str(result[i][2])+'\n'+'\n'+'🌏'+'view in map'+'-->'+'\n'+result[i][3]+'\n'+'\n'+'\n'+'👉')
+                msg.body('\n'+'\n'+'\n'+'📌'+'landmark'+'-->'+'\n'+result[i]['vicinity']+'\n'+'\n'+'🔖'+'rating'+'-->'+str(result[i]['rating'])+'\n'+'\n'+'🌏'+'view in map'+'-->'+'\n'+result[i]['link']+'\n'+'\n'+'\n'+'👉')
             responded = True
     if not responded :
         msg.body('Sorry!! I can not understand your words !!')

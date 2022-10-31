@@ -1,9 +1,12 @@
+from pickle import TRUE
+import re
 from unittest import result
 import requests
+from operator import itemgetter
 # import json
 
 def lat_solve(adr) :
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=API_KEY"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=API_KET"
     payload={}
     headers = {}
 
@@ -15,7 +18,7 @@ def lat_solve(adr) :
     
     loc = [repository1,repository2]
     return loc
-  
+ 
 def nearby(find,adr) :
     if find=='hotels' or find=='hotel':
         find='lodging'
@@ -59,21 +62,22 @@ def fetch(find,adr):
         if (total[i]["business_status"]=="OPERATIONAL"):
             loc=[total[i]["geometry"]["location"]['lat'],total[i]["geometry"]["location"]['lng']]
             loc_link=createLink(loc[0],loc[1])
-            name.append([total[i]["name"],total[i]["vicinity"],total[i]["rating"],loc_link])
+            temp = {}
+            temp['name'] = total[i]["name"]
+            temp['vicinity'] = total[i]["vicinity"]
+            temp['rating'] = total[i]["rating"]
+            temp['link'] = loc_link
+            name.append(temp)
             i+=1
-    for k in range(0,len(name)-1):
-        for j in range(k+1,len(name)):
-            if(name[k][2]<name[j][2]):
-                temp=name[k]
-                name[k]=name[j]
-                name[j]=temp
-    return name
+    result = sorted(name, key=itemgetter('rating'), reverse=True)
+    return result
 
 
-# print(fetch("restaurant","kolkata"))
+# print(fetch("restaurant","ladakh"))
     
 
     
 # print(nearby("restaurant","siuri"))
 
 # https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.2268475,77.56194189999999&radius=15000&type=lodging&key=API_KEY'
+
