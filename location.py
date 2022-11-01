@@ -1,12 +1,9 @@
-from pickle import TRUE
-import re
-from unittest import result
 import requests
 from operator import itemgetter
 # import json
 
 def lat_solve(adr) :
-    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=API_KET"
+    url = f"https://maps.googleapis.com/maps/api/geocode/json?address={adr}&key=API_KEY"
     payload={}
     headers = {}
 
@@ -56,6 +53,7 @@ def createLink(lat,lng):
 def fetch(find,adr):
     total=nearby(find,adr)
     print(len(total))
+    total = sorted(total, key=itemgetter('rating'), reverse=True)                    #sorting a list of dict by one value which is rating
     name=[]
     i=0
     while (len(name)<5):
@@ -68,9 +66,8 @@ def fetch(find,adr):
             temp['rating'] = total[i]["rating"]
             temp['link'] = loc_link
             name.append(temp)
-            i+=1
-    result = sorted(name, key=itemgetter('rating'), reverse=True)                       #sorting a list of dict by one value which is rating
-    return result
+            i+=1             
+    return name
 
 
 # print(fetch("restaurant","ladakh"))
