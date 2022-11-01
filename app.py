@@ -57,7 +57,7 @@ def bot():
             msg.body('\n'+'👉')
             result=fetch(last[0],last[1])                       #fetch is from location.py ,it returns multi dimensional array of locations
             for i in range (0,len(result)):                   #accessing elements
-                msg.body('\n'+'\n'+'\n'+'📌'+'landmark'+'-->'+'\n'+result[i]['vicinity']+'\n'+'\n'+'🔖'+'rating'+'-->'+str(result[i]['rating'])+'\n'+'\n'+'🌏'+'view in map'+'-->'+'\n'+result[i]['link']+'\n'+'\n'+'\n'+'👉')
+                msg.body(result[i]['name']+'\n'+'\n'+'📌'+'landmark'+'-->'+'\n'+result[i]['vicinity']+'\n'+'\n'+'🔖'+'rating'+'-->'+str(result[i]['rating'])+'\n'+'\n'+'🌏'+'view in map'+'-->'+'\n'+result[i]['link']+'\n'+'\n'+'\n'+'👉')
             responded = True
     if not responded :
         msg.body('Sorry!! I can not understand your words !!')
